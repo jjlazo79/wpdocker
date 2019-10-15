@@ -1,0 +1,5 @@
+#requirements.txt.
+#Examples:
+#wordpress-seo==11.4
+#wp-mail-smtp==1.5.2
+

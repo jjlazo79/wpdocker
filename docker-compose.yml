@@ -1,0 +1,65 @@
+version: '3.6'
+services:
+  website:
+    build: .
+    env_file: .env
+    ports:
+      - target: 80
+        published: 80
+        protocol: tcp
+        mode: host
+    volumes:
+      - type: bind
+        source: ./plugins/${PLUGIN_DIR}
+        target: /var/www/html/wp-content/plugins/${PLUGIN_DIR}
+      - type: bind
+        source: ./themes/${THEME_DIR}
+        target: /var/www/html/wp-content/themes/${THEME_DIR}
+      - type: bind
+        source: ./wp-config.php
+        target: /var/www/html/wp-config.php
+      - type: volume
+        source: wp_uploads
+        target: /var/www/html/wp-content/uploads
+  db:
+    image: mysql:8.0
+    env_file: .env
+    environment:
+      MYSQL_ROOT_USER: ${MYSQL_ROOT_USER}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    command: '--default-authentication-plugin=mysql_native_password'
+    volumes:
+      - type: volume
+        source: db_roots_mysql
+        target: /var/lib/mysql
+  redis:
+      container_name: redis
+      image: redis
+      ports:
+        - "6379:6379"
+      restart: always
+  wp-cli:
+    image: wordpress:cli
+    volumes:
+      - type: bind
+        source: ./plugins/${PLUGIN_DIR}
+        target: /var/www/html/wp-content/plugins/${PLUGIN_DIR}
+      - type: bind
+        source: ./themes/${THEME_DIR}
+        target: /var/www/html/wp-content/themes/${THEME_DIR}
+  composer:
+    image: composer
+    volumes:
+      - type: bind
+        source: ./plugins/${PLUGIN_DIR}
+        target: /var/www/html/wp-content/plugins/${PLUGIN_DIR}
+      - type: bind
+        source: ./themes/${THEME_DIR}
+        target: /var/www/html/wp-content/themes/${THEME_DIR}
+
+volumes:
+  db_roots_mysql:
+  wp_uploads:
