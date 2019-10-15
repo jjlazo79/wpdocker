@@ -3,7 +3,7 @@ FROM ubuntu:18.04
 # versions from most relevant packages and distributions
 ARG PHPFPMVERSION="1:7.2+60ubuntu1"
 ARG OPENRESTYVERSION="1.15.8.1-1~bionic1"
-ARG WPVERSION="5.2.2"
+ARG WPVERSION="5.2.3"
 ENV PHPFPMVERSION=$PHPFPMVERSION
 ENV OPENRESTYVERSION=$OPENRESTYVERSION
 ENV WPVERSION=$WPVERSION
@@ -19,6 +19,9 @@ RUN apt-get update && \
     php-gd \
     php-opcache \
     php-zip \
+    php-xdebug \
+    php-xml \
+    php-curl \
     rsync \
     unzip \
     curl \
