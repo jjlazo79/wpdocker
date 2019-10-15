@@ -44,7 +44,7 @@ RUN apt-get update && \
 		rm -rf /var/lib/apt/lists/*
 
 # download wordpress code
-WORKDIR /opt/sngular
+WORKDIR /opt/jjlazo79
 RUN curl -O https://wordpress.org/wordpress-${WPVERSION}.zip \
     && unzip wordpress-$WPVERSION.zip \
     && rm wordpress-$WPVERSION.zip
@@ -62,17 +62,17 @@ COPY nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
 # own php-fpm & modules configuration
 RUN mkdir -p /var/run/php && \
 		mkdir -p /var/log/php-fpm
-COPY phpsngular.ini /etc/php/7.2/fpm/conf.d/20-phpsngular.ini
+COPY phpconf.ini /etc/php/7.2/fpm/conf.d/20-phpconf.ini
 
 # copy wordpress core
 WORKDIR /var/www/html
-RUN rsync -av --progress /opt/sngular/wordpress/ . \
+RUN rsync -av --progress /opt/jjlazo79/wordpress/ . \
 			--exclude wp-content/themes/twenty* \
 			--exclude wp-content/plugins/hello.php \
       --exclude wp-content/plugins/akismet* \
-      && rm -rf /opt/sngular/
+      && rm -rf /opt/jjlazo79/
 
-# copy own sngular code, like plugins or themes.
+# copy own code, like plugins or themes.
 WORKDIR /var/www/html/wp-content
 COPY ./themes ./themes
 COPY ./plugins ./plugins

@@ -1,29 +1,29 @@
-## SNGULAR WORDPRESS TEMPLATE
+## WORDPRESS TEMPLATE
 
-Wordpress SNG template installation
+WordPress template installation
 
 #### INSTALLATION
 
 1. Clone template repository
 
 ```
-git clone git@gitlab.sngular.com:SNG09C/wp-template-website.git
+git clone git@github.com:jjlazo79/wpdocker.git
 ```
 
-2. Copy content to your new Wordpres installation directory
+2. Copy content to your new WordPress installation directory
 
 ```
 mkdir NAME-WEBSITE
 cp -rpf wp-template-website/* NAME-WEBSITE/
 ```
 
-3. Copy Sngular Project Plugin
+3. Copy Own Project Plugin
 
 ```
 cp -rpf /path/to/sng/NAME-PLUGIN NAME-WEBSITE/plugins
 ```
 
-4. Copy Sngular Project Theme
+4. Copy Own Project Theme
 
 ```
 cp -rpf /path/to/sng/NAME-THEME NAME-WEBSITE/themes
@@ -50,7 +50,7 @@ define( 'DB_PASSWORD', 'MYSQL_PASSWORD' );
 mv wp-config.template wp-config.php
 ```
 
-9. On **plugins** dir, edit *requirements.txt* and add desired install plugins and their versions. Example:
+9. On **plugins** dir, edit _requirements.txt_ and add desired install plugins and their versions. Example:
 
 ```
 wordpress-seo==11.4
@@ -65,6 +65,7 @@ To install buyed plugins or plugins that are not avaliable on wordpress site, un
 
 cp buyed-plugins NAME-WEBSITE/plugins
 ```
+
 It will be avaliable to activate on your installation
 
 #### RUNNING CONTAINER
@@ -76,11 +77,21 @@ cd NAME-WEBSITE
 docker-compose up --build
 ```
 
-To access  your installation, open a web browser and browse http://localhost
-
+To access your installation, open a web browser and browse http://localhost
 
 When you access for first time you will be asked to give an administrator name and password.
 
-
 Then you can go to http://localhost and log with your admin credentials.
 
+¿Problems with old Docker environment?
+Try first:
+
+```
+docker-compose build --no-cache
+```
+
+If not work, try:
+
+```
+docker system prune
+```

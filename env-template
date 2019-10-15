@@ -1,5 +1,5 @@
 # variables for <PROJECT_NAME>
-# Mysql Data for Wordpress installation
+# Mysql Data for WordPress installation
 
 MYSQL_ROOT_USER=root
 MYSQL_ROOT_PASSWORD=DjbPqX9VnX8IFQ
@@ -7,6 +7,6 @@ MYSQL_USER=udbPROJECT_NAME
 MYSQL_PASSWORD=rpnmathGKxEw3Fj
 MYSQL_DATABASE=dbPROJECT_NAME
 
-# Own Sngular plugin and theme for Wordpress installation.
+# Own plugin and theme for WordPress installation.
 PLUGIN_DIR=NAME-PLUGIN
 THEME_DIR=NAME-THEME
